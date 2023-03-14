@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+       
+        int val;
+        int x =nums.size();
+
+        for(int i=0;i<x;i++){
+            
+            int j=i-1;
+            int leftsum=0;
+            while(j>=0){
+                leftsum=leftsum+nums[j];
+                 j--;  
+            }
+            //  cout<<leftsum<<" ";
+            int k=i+1;
+            int rightsum=0;
+            while(k<x){
+               rightsum=rightsum+nums[k];
+               k++;
+              
+           }
+        // cout<<rightsum<<endl;
+        if(leftsum==rightsum){
+            val=i;
+            return val;
+        }
+      
+     }
+    return -1;
+    }
+    
+};
