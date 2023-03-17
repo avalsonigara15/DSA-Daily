@@ -1,0 +1,15 @@
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+        vector<int> sqr;
+        int x;
+        for(int i=0;i<nums.size();i++){
+            x=nums[i]*nums[i];
+            sqr.push_back(x);
+            // cout<<sqr[i];
+        }
+        sort(sqr.begin(),sqr.end());
+
+        return sqr;
+    }
+};
