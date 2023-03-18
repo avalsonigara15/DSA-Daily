@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int subtractProductAndSum(int n) {
+           int multi=1;
+           int sum=0;
+           int sub;
+           while(n!=0){
+            int dig;
+            dig=n%10;
+            n=n/10;
+            multi*=dig;
+            sum+=dig;
+          
+           }
+          sub=multi-sum;
+            return sub;
+    }
+};

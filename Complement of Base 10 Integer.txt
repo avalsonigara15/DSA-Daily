@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int bitwiseComplement(int n) {
+      vector<int>arr;
+      vector<int> comp;
+  
+  if(n==0){
+    return 1;
+  }
+      int i=0;
+      while(n!=0){
+        arr.push_back(n%2);
+        n=n/2;
+        i++;
+       
+      } 
+         int x=0;
+      for(int i=0;i<arr.size();i++){
+        if(arr[i]==0){
+          comp.push_back(1);
+        }
+        else{
+          comp.push_back(0);
+        }
+        x = x+  comp[i]*pow(2,i);
+       
+      }
+  
+      
+      return x;
+    }
+};
