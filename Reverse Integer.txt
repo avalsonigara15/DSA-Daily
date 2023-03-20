@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int reverse(int x) {
+        long sum=0;
+        
+        while(x!=0 ){
+            
+          int digi = x%10;
+             x=x/10;
+            sum=(sum*10)+digi;
+             
+        }
+         if((-pow(2,31)<=sum&&sum<=(pow(2,31)-1))){
+               
+                return sum;
+            }
+            else{
+                return 0;
+            }
+           
+        return sum;
+    }
+
+};
