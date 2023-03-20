@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int findComplement(int num) {
+        vector<int>decTobin;
+        int sum=0;
+        int i=0;
+        while(num!=0){
+            int digi=num%2;
+            num/=2;
+            decTobin.push_back(digi);
+            
+        }
+        for(int i=0;i<decTobin.size();i++){
+            if(decTobin[i]==1){
+                decTobin[i]=0;   
+            }
+            else{
+                decTobin[i]=1;
+                sum =sum+ decTobin[i]*pow(2,i);
+            }
+            
+        }
+        return sum;
+    }
+};
