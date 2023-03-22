@@ -1,0 +1,57 @@
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+    //   vector<int> ans;
+    // int x=nums.size();
+    //   int count=0;
+    //   for(int i=0; i<x;i++){
+    //       int ans=0;
+    //                 ans=nums[i]+nums[i+1];
+
+    //                 // cout<<sum<<" ";
+    //                 // cout<<endl;
+                    
+    //                 if((ans==k||nums[i]==k)){
+    //                     count++;                        
+    //                 }
+                  
+    //       }
+        
+    //   return count;
+    //  int n = nums.size(); // taking the size of the array
+        
+    //     int ans = 0; // ans variable to store our count
+        
+    //     for(int i = 0; i < n; i++) // traverse from the array
+    //     {
+    //         int sum = nums[i]; // provide sum with arr[i]
+            
+    //         if(sum == k) // if element itself equal to k, then also increment count
+    //             ans++;
+            
+    //         for(int j = i + 1; j < n; j++) // now moving forward,
+    //         {
+    //             sum += nums[j]; // add elements with sum
+                
+    //             if(sum == k) // if at any point they become equal to k
+    //                 ans++; // increment answer
+    //         }
+            
+    //     }
+        
+    //     return ans; // and at last, return answer
+    
+     unordered_map<int,int> mp;
+        int sum=0,ans=0;
+        mp[sum] = 1;
+        for(auto it:nums){
+            sum += it;
+            int find = sum - k;
+            if(mp.find(find) != mp.end()){
+                ans += mp[find];
+            }
+            mp[sum]++;
+        }
+        return ans;
+    }
+};
