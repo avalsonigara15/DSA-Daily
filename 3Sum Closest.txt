@@ -1,0 +1,60 @@
+class Solution {
+public:
+    int threeSumClosest(vector<int>& nums, int target) {
+    //    sort(nums.begin(),nums.end());
+    //    set<int>ans;
+    //    vector<int>ans1;
+    //    int sum=0;
+    //    for(int i=0;i<nums.size()-1;i++){
+    //        int j =i+1;
+    //        int k=nums.size()-1;
+    //        while((j<k)){
+    //            sum=nums[i]+nums[j]+nums[k];
+    //            ans.insert((sum));
+    //            j++;
+    //            k--;
+    //        }
+    //    }
+    //    for(auto triplets : ans)
+    //         ans1.push_back(triplets);
+    //    int left = 0, right = ans1.size()-1;
+    // while (left < right) {
+    //     if (abs(ans1[left] - target) <= abs(ans1[right] - target)) {
+    //         right--;
+    //     } else {
+    //         left++;
+    //     }
+    // }
+    // return ans1[left];
+
+    // //    for (auto it = ans.begin(); it !=
+    // //                            ans.end(); ++it)
+    // //     cout << ' ' << *it;
+    // //    return 0;
+    // } 
+      int n = nums.size();
+        sort(nums.begin(), nums.end());
+
+        int closest = nums[0] + nums[1] + nums[2];
+        for (int i = 0; i < n - 2; i++){
+            int l = i + 1;
+            int r = n - 1;
+            cout<<i<<" "<<l<<" "<<r<<" ";
+            while (l < r) {
+                int curSum = nums[i] + nums[l] + nums[r];
+                if (curSum == target) return curSum;
+                if (abs(target - curSum) < abs(target - closest)) {
+                    closest = curSum;
+                }
+
+                if (target < curSum) {
+                    r--;
+                } else {
+                    l++;
+                }
+            }
+        }
+
+        return closest;
+    }
+};
