@@ -1,0 +1,135 @@
+/***********************************************************LeetCode Problem******************************************************************************/
+class Solution {
+public:
+
+    int mySqrt(int x) {
+        int s=0;int e=x;
+        double mid=s+(e-s)/2;
+        int ans;
+        while(s<=e){
+            if(mid*mid==x){
+                return ans=mid;
+                
+            }
+            else if(mid*mid>x){
+                e=mid-1;
+            }
+            else{
+                s=mid+1;
+                ans=mid;
+            }
+            mid=s+(e-s)/2;
+        }
+        return ans;
+    }
+};
+
+/**********************************************************SquareRoot Precision*****************************************************************************/
+#include <iostream>
+using namespace std;
+
+int sqrtInt(int n){
+     int s=0;int e=n;
+        long mid=s+(e-s)/2;
+        int ans;
+        while(s<=e){
+            if(mid*mid==n){
+                return ans=mid;
+                
+            }
+            else if(mid*mid>n){
+                e=mid-1;
+            }
+            else{
+                ans=mid;
+                s=mid+1;
+                
+            }
+            mid=s+(e-s)/2;
+        }
+        return ans;
+}
+double morePrecision(int n , int pre ,int tempSol ){
+    double factor = 1;
+    double ans=tempSol;
+    
+    for(int i=0;i<pre;i++){
+        factor=factor/10;
+        
+        for(double j=ans;j*j<n;j=j+factor){
+            ans=j;
+            
+        }
+    }
+    return ans;
+}
+
+int main() {
+    
+    int n;
+    cout<<"Enter a number"<<endl;
+    cin>>n;
+    int tempSol=sqrtInt(n);
+    
+    cout<<"Precise sqrt : "<< morePrecision(n,3,tempSol);
+    return 0;
+} 
+
+
+
+/**********************************************************Pivot+BinarySearch Problem**************************************************************************/
+#include <iostream>
+using namespace std;
+
+int pivot(int arr[],int size){
+    int s=0;
+    int e=size-1;
+    int mid=s+(e-s)/2;
+    
+    while(s<e){
+        if(arr[mid]>=arr[0]){
+            s=mid+1;
+        }
+        else{
+            e=mid;
+        }
+        mid=s+(e-s)/2;
+    }
+    return s;
+}
+
+int binarySearch(int arr[],int s ,int e ,int key){
+    int st=s;
+    int ed=e;
+    int mid=st+(ed-st)/2;
+    
+    while(st<=ed){
+        if(key==arr[mid]){
+            return mid;
+            cout<<"Found"<<" ";
+        }
+        if(key>arr[mid]){
+            st=mid+1;
+        }
+        else{
+            ed=mid-1;
+        }
+        mid=st+(ed-st)/2;
+    }
+
+}
+
+int main() {
+   
+   int arr[6]={7,9,10,1,2,3};
+   int ans = pivot(arr,6);
+   int k=2;
+   if(k>=arr[ans]&&k<=arr[6-1]){
+  
+      cout<< binarySearch(arr,ans, (6-1),k);
+   }
+   else{
+      cout<< binarySearch(arr,0,ans-1,k);
+   }
+   
+}

@@ -1,0 +1,54 @@
+
+#include <iostream>
+using namespace std;
+
+bool isPossible(int array1[],int n,int m ,int mid){
+    int studentCount = 1;
+    int pageCount = 0;
+    
+    for(int i=0;i<n;i++){
+        if(pageCount+array1[i]<=mid){
+            pageCount+=array1[i];
+        }
+        else{
+            studentCount++;
+            if(studentCount>m||array1[i]>mid){
+                return false;
+            }
+            pageCount = array1[i];
+        }
+    }
+    return true;
+}
+int main() {
+ int arr[4];
+ cout<<"Enter 4 Elements"<<endl;
+ for(int i=0;i<4;i++){
+     cin>>arr[i];
+ }
+ 
+ int nofBooks= 4,stud=2;
+ int ans=-1;
+ int start = 0;
+ int sum=0;
+ for(int i=0;i<nofBooks;i++){
+     sum+=arr[i];
+ }
+ 
+ int end = sum;
+ 
+ int mid = start+(end-start)/2;
+ 
+ while(start<=end){
+     if(isPossible(arr,nofBooks,stud,mid)){
+         ans = mid;
+         end=mid-1;//we are shifting the mid because we want the minimum ans and ahead of mid we will definetly get the answer but it wont be the minimum one
+     }
+     else{
+         start = mid+1;
+     }
+     mid=start + (end-start)/2;
+ }
+ cout<<"Answer is : "<<ans;
+    
+}
