@@ -1,0 +1,36 @@
+class Solution {
+public:
+    string removeDuplicates(string s) {
+        string temp = "";
+        int i=0;
+
+        while(i<s.length()){
+            if(temp.empty()||s[i]!=temp.back()){
+                temp.push_back(s[i]);
+            }
+            else{
+                temp.pop_back();
+            }
+            i++;
+        }
+        return temp;
+    }
+};
+
+
+// azxxzy
+
+// temp={a,y}
+
+// i=0;
+// push a in temp
+// i=1
+// push z in temp
+// i=2
+// push x in temp
+// i=3
+// pop x from temp
+// i=4
+// pop z from temp
+// i=5
+// push y in temp
