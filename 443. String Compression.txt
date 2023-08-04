@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int compress(vector<char>& chars) {
+        int i=0;
+        int ansIndex=0;
+        int n=chars.size();
+
+        while(i<n){
+            int j=i+1;
+            while(j<n&&chars[i]==chars[j]){
+                j++;
+            }
+            // Either the vector is completely traversed
+            // Either a different element is found          
+            chars[ansIndex++]=chars[i];
+            int count = j-i;
+             i++;
+
+            if(count>1){
+                string cnt = to_string(count);
+                // converting the count into single character and storing it
+                for(char ch:cnt){
+                    chars[ansIndex++]=ch;
+                }
+                // Moving to a different character
+                i=j;
+            }
+         
+        }
+          return ansIndex;
+        
+    }
+};
