@@ -1,44 +1,85 @@
 class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
-    int T,B,L,R,dir;
-    T=0;
-    B=matrix.size()-1;
-    L=0;
-    R=matrix[0].size()-1;
-    dir=0;
-    int i;
-    vector<int> ans;
+    // int T,B,L,R,dir;
+    // T=0;
+    // B=matrix.size()-1;
+    // L=0;
+    // R=matrix[0].size()-1;
+    // dir=0;
+    // int i;
+    // vector<int> ans;
     
-    while(T<=B && L<=R)
-    {
-        if(dir==0)
-        {
-            for(i=L;i<=R;i++)
-                ans.push_back(matrix[T][i]);
-            T++;
+    // while(T<=B && L<=R)
+    // {
+    //     if(dir==0)
+    //     {
+    //         for(i=L;i<=R;i++)
+    //             ans.push_back(matrix[T][i]);
+    //         T++;
+    //     }
+    //     else if(dir==1)
+    //     {
+    //         for(i=T;i<=B;i++)
+    //             ans.push_back(matrix[i][R]);
+    //         R--;
+    //     }
+    //     else if(dir==2)
+    //     {
+    //         for(i=R;i>=L;i--)
+    //             ans.push_back(matrix[B][i]);
+    //         B--;
+    //     }
+    //     else if(dir==3)
+    //     {
+    //         for(i=B;i>=T;i--)
+    //             ans.push_back(matrix[i][L]);
+    //         L++;
+    //     }
+    //     dir=(dir+1)%4;
+    // }
+    // return ans;
+
+    vector<int> ans;
+    int row=matrix.size();
+    int col=matrix[0].size();
+
+    int count = 0;
+    int total = row*col;
+
+    int startingRow=0;
+    int endingCol=col-1;
+    int endingRow=row-1;
+    int startingCol = 0;
+
+    while(count<total){
+
+        for(int index=startingCol;count<total && index<=endingCol;index++){
+            ans.push_back(matrix[startingRow][index]);
+            count++;
         }
-        else if(dir==1)
-        {
-            for(i=T;i<=B;i++)
-                ans.push_back(matrix[i][R]);
-            R--;
+        startingRow++;
+
+        for(int index=startingRow;count<total && index<=endingRow;index++){
+            ans.push_back(matrix[index][endingCol]);
+            count++;
         }
-        else if(dir==2)
-        {
-            for(i=R;i>=L;i--)
-                ans.push_back(matrix[B][i]);
-            B--;
+        endingCol--;
+
+        for(int index=endingCol;count<total && index>=startingCol;index--){
+            ans.push_back(matrix[endingRow][index]);
+            count++;
         }
-        else if(dir==3)
-        {
-            for(i=B;i>=T;i--)
-                ans.push_back(matrix[i][L]);
-            L++;
+        endingRow--;
+
+        for(int index=endingRow;count<total && index>=startingRow;index--){
+            ans.push_back(matrix[index][startingCol]);
+            count++;
         }
-        dir=(dir+1)%4;
+        startingCol++;
     }
     return ans;
+    
 }
 
 };
