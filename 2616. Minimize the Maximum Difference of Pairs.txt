@@ -1,0 +1,49 @@
+// class Solution {
+// public:
+//     int minimizeMax(vector<int>& nums, int p) {
+//         if(p==0){
+//             return 0;
+//         }
+//         sort(nums.begin(),nums.end());
+//      vector<int> ans;
+//     //  cout<<nums.size();
+//     int n=nums.size();
+//     // int m=n-2;
+//     // int l=n-3;
+//      for(int i=0;i<n-3;i+2){
+//         for(int j=i+1;j<n-2;j+2){
+//              int sub=abs(nums[i]-nums[j]);
+//         // cout<<sub<<" ";
+//         ans.push_back(sub);
+//         }
+//      }
+//       sort(ans.begin(),ans.end());
+//     for(int i=0;i<ans.size();i++){
+//         cout<<ans[i]<<" ";
+//     }
+//     int answer=ans[p-1];
+   
+//     return answer;
+//     }
+// };
+class Solution {
+public:
+     int minimizeMax(vector<int>& A, int p) {
+        sort(A.begin(), A.end());
+        int n = A.size(), left = 0, right = A[n - 1] - A[0];
+        while (left < right) {
+            int mid = (left + right) / 2, k = 0;
+            for (int i = 1; i < n && k < p; ++i) {
+                if (A[i] - A[i - 1] <= mid) {
+                    k++;
+                    i++;
+                }
+            }
+            if (k >= p)
+                right = mid;
+            else
+                left = mid + 1;
+        }
+        return left;
+    }
+};
