@@ -1,0 +1,46 @@
+// class Solution {
+// public:
+//     bool repeatedSubstringPattern(string s) {
+//     if(s[0]==s[s.size()-1]){
+//     return false;
+//     }
+
+//     int cnt=0;
+//    int j = s.size()-2;
+//    while(j>=0){
+//        if(s[0]==s[j]){
+//            cnt=s.size()-j;
+//            break;
+//        }
+//        j--;
+//    }
+// //    cout<<cnt<<endl;
+//    if((s.size()%cnt)==0){
+        
+//        return true;
+//    }
+//    else{
+     
+//        return false;
+//    }
+    
+//     }
+
+// };
+class Solution {
+public:
+    bool repeatedSubstringPattern(string s) {
+        int n = s.length();
+        for (int i = 1; i <= n / 2; ++i) {
+            if (n % i == 0) {
+                string substring = s.substr(0, i);
+                string repeated = "";
+                for (int j = 0; j < n / i; ++j) {
+                    repeated += substring;
+                }
+                if (repeated == s) return true;
+            }
+        }
+        return false;
+    }
+};
